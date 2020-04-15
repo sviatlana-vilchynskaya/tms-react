@@ -1,25 +1,26 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
 const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const merge = require('webpack-merge');
+
 const common = require('./webpack.common');
 
-module.exports = merge(common, {
+module.exports = merge.smart(common, {
   mode: 'development',
   devtool: 'inline-source-map',
-  watch: true,
-devServer: {
-  contentBase: '../dist',
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
+  watch: true, // or flag in package.json
+  devServer: {
+    port: 8000,
     hot: true,
-    open: true
-},
-plugins: [
-  new HtmlWebpackPlugin({
-    template: 'src/index.html',
-    minify: true,
-  }),
-  new CleanWebpackPlugin(),
-  new webpack.HotModuleReplacementPlugin()
-]
+    open: true, // or flag in package.json
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 });
-
