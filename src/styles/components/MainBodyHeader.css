@@ -1,0 +1,17 @@
+.Products__sort_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.Products__sort_value {
+    display: block;
+    font-size: 1.17em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: normal;
+}
