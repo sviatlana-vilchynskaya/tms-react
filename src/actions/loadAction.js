@@ -1,9 +1,9 @@
-import { END_LOADER, START_LOADER } from '../constants/actionTypes';
+import { createActions } from 'redux-actions';
 
-export const startLoader = () => ({
-  type: START_LOADER,
-});
-
-export const endLoader = () => ({
-  type: END_LOADER,
-});
+export const {
+  startLoader,
+  endLoader,
+} = createActions(
+  'START_LOADER',
+  'END_LOADER',
+);

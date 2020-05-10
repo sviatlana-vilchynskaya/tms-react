@@ -1,13 +1,10 @@
-import { ADD_PRODUCTS } from '../constants/actionTypes';
+import { handleActions } from 'redux-actions';
+
+import { addProducts } from '../actions/productAction';
 import { productsState } from '../constants/defaultState';
 
-const productsReducer = (state = productsState, { type, payload }) => {
-  switch (type) {
-    case ADD_PRODUCTS:
-      return payload;
-    default:
-      return state;
-  }
+export default {
+  products: handleActions({
+    [addProducts]: (state, { payload = [] }) => payload,
+  }, productsState),
 };
-
-export default productsReducer;

@@ -1,23 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { number, func } from 'prop-types';
+// import { func, number } from 'prop-types';
+// import Modal from './Modal';
+import '../styles/components/Basket.css';
+import viewNumber from '../helpers/viewNumber';
 
-const Basket = ({ count, amount }) => (
-  <div>
-    <p>
+
+const Basket = ({ count, amount, onClick }) => (
+  <div className="basket">
+    <div>
       Basket
-      <span className="basket__count">{count}</span>
-    </p>
-    <p className="basket__amount">
-      amount:
-      <span className="basket__amount_sum">{amount}</span>
-      $
-    </p>
+      <span id="count" className="basket__count">{count}</span>
+    </div>
+    <div className="basket__amount" onClick={onClick}>{amount}</div>
+    <span id="amount">{viewNumber(amount)}</span>
   </div>
 );
 
-export default Basket;
-
 Basket.propTypes = {
-  count: PropTypes.number.isRequired,
-  amount: PropTypes.number.isRequired,
+  count: number.isRequired,
+  amount: number.isRequired,
+  onClick: func.isRequired,
 };
+
+export default Basket;

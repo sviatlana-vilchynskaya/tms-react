@@ -5,6 +5,8 @@ export const basketState = {
   currency: '',
 };
 
-export const loadState = false;
+export const loadState = true;
 
 export const productsState = [];
+
+export const valueBYNState = 0;

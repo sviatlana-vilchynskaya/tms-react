@@ -1,6 +1,3 @@
-import { ADD_PRODUCTS } from '../constants/actionTypes';
+import { createActions } from 'redux-actions';
 
-export const addProducts = (products = []) => ({
-  type: ADD_PRODUCTS,
-  payload: products,
-});
+export const { addProducts } = createActions('ADD_PRODUCTS');

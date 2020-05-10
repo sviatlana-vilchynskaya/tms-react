@@ -1,28 +1,24 @@
-import { ADD_TO_BASKET, REMOVE_FROM_BASKET } from '../constants/actionTypes';
+import { handleActions } from 'redux-actions';
+import { addToBasket, removeFromBasket } from '../actions/basketAction';
 import { basketState } from '../constants/defaultState';
 
-const basketReducer = (state = basketState, { type, payload }) => {
-  const newState = { ...state, productIds: [...state.productIds] };
+const defaultPayload = { productsID: '', priceValue: 0, priceCurrency: '' };
 
-  switch (type) {
-    case ADD_TO_BASKET:
-      newState.productIds.push(payload.productId);
+export default {
+  basket: handleActions({
+    [addToBasket]: (state, { payload = defaultPayload }) => {
+      const newState = { ...state, productsID: [...state.productsID] };
+      newState.productsID.push(payload.productIds);
       newState.count += 1;
       newState.amount += payload.priceValue;
-      newState.currency = payload.priceCurrency;
-
       return newState;
-    case REMOVE_FROM_BASKET:
-      newState.productIds = newState.productIds.filter((productIds) => (
-        productIds !== payload.productId));
+    },
+    [removeFromBasket]: (state, { payload = defaultPayload }) => {
+      const newState = { ...state, productsID: [...state.productsID] };
+      newState.productsID.push(payload.productIds);
       newState.count -= 1;
       newState.amount -= payload.priceValue;
-      newState.currency = basketState.currency;
-
       return newState;
-    default:
-      return state;
-  }
+    },
+  }, basketState),
 };
-
-export default basketReducer;

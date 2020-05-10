@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import '../styles/components/Search.css';
 
 export default class Search extends Component {
   render() {
     return (
-      <input id="input" type="text" placeholder="Search" />
+      <form>
+        <input id="input" className="header__search" type="text" placeholder="Search" />
+      </form>
     );
   }
 }
