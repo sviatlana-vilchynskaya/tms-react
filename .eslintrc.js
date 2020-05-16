@@ -33,5 +33,11 @@ module.exports = {
     "react/destructuring-assignment": [0],
     "import/extensions": [0],
     "import/no-unresolved": [0],
+    "jsx-a11y/anchor-is-valid": [ "off", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }],
+    "jsx-a11y/no-static-element-interactions": ["off"],
   },
 };

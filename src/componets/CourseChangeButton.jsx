@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/components/CourseChangeButton.css';
-import { func } from 'prop-types';
+
 
 export default class CourseChangeButton extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ export default class CourseChangeButton extends Component {
 
   handleClick() {
     this.setState((prevState) => (
+      // eslint-disable-next-line react/prop-types
       { active: !prevState.active }), () => this.props.currencyProduct(this.state.active));
   }
 

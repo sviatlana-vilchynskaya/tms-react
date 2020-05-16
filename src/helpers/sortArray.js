@@ -1,4 +1,3 @@
-
 export default function (array, typeSort) {
   if (typeSort === 'desc') {
     array.sort((a, b) => {

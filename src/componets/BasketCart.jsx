@@ -3,6 +3,7 @@ import { object } from 'prop-types';
 import viewNumber from '../helpers/viewNumber';
 
 import '../styles/components/BasketCart.css';
+import Button from './Button';
 
 
 const BasketCart = ({ product }) => (
@@ -18,6 +19,7 @@ const BasketCart = ({ product }) => (
         </div>
         <div className="product__price">
           <p>{viewNumber(product.price.value)}</p>
+          <Button product={product} />
         </div>
       </div>
     </div>

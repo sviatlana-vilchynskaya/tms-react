@@ -1,4 +1,18 @@
 .CourseChangeButton_bg {
-    position: absolute;
     left: 63%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    width: 60px;
+    height: 30px;
+    background-color: #ff8b38;
+    border-style: none;
+    border-radius: 3px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.CourseChangeButton_bg._active {
+    background-color: grey;
 }

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { compose } from 'redux';
-import { withRouter } from 'react-router';
-import { object, func, number } from 'prop-types';
+import { object } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 import Button from './Button';
 
@@ -10,12 +9,12 @@ import viewNumber from '../helpers/viewNumber';
 import '../styles/components/Content.css';
 
 
-const Content = ({ product, history }) => {
+const Content = ({ product }) => {
+  const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
     history.push(`/${product.id}`);
   };
-  console.log(product, 1111);
   return (
     <div id="Content" className="Products__block">
       <div className="product__wrap">
@@ -59,11 +58,10 @@ const Content = ({ product, history }) => {
       </div>
     </div>
   ); */
+
+Content.displayName = 'Content';
+
 Content.propTypes = {
   product: object.isRequired,
-  imageLink: func.isRequired,
-  price: number.isRequired,
-  push: func.isRequired,
-  history: object.isRequired,
 };
-export default withRouter(Content);
+export default Content;

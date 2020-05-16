@@ -1,13 +1,14 @@
 .Products__block {
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    border-radius: 4px;
     background-color: #ffffff;
+    border-radius: 7px;
+    padding: 15px;
+    margin: 20px 0 20px 0;
+
 }
 
 .product__wrap {
-    height: 145px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .product__cell {
@@ -44,8 +45,14 @@
 }
 
 .product__cost {
-    position: relative;
-    bottom: -27px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.product__cost p {
+    text-align: right;
 }
 
 .product__cost_info {
@@ -68,4 +75,14 @@
     border-radius: 3px;
     padding: 0;
     cursor: pointer;
+}
+
+.cart {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
 }

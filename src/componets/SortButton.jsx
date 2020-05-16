@@ -1,55 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { array } from 'prop-types';
-
+import { compose } from 'redux';
+import { func } from 'prop-types';
+// action
+import {
+  sortAsc,
+  sortDesc,
+} from '../actions/sortAction';
+// styles
 import '../styles/components/SortButton.css';
-import sortArray from '../helpers/sortArray';
 
 
-class SortButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
+const SortButton = (props) => {
+  const [active, setActive] = useState({ status: true, loader: false });
 
-  handleClick(event) {
+  useEffect(() => {
+    if (active.loader) {
+      if (active.status) props.sortDesc();
+      else props.sortAsc();
+    }
+  }, [active]);
+
+  const handleClick = (event) => {
     event.preventDefault();
-    this.setState((prevState) => ({ active: !prevState.active }), () => (this.state.active
-      ? sortArray(this.props.products, 'asc')
-      : sortArray(this.props.products, 'desc')));
-  }
+    setActive((prevState) => ({ status: !prevState.status, loader: true }));
+  };
 
-  render() {
-    const sort = this.state.active ? 'Desc' : 'Asc';
-    console.log(this.props.products);
-    return (
-      <>
-        <div>
-          Sort by price:
-          <a
-            href="http://localhost:8000/"
-            onClick={this.handleClick}
-            className="products__sort"
-            id="sort"
-          >
-            {sort}
-          </a>
-        </div>
-      </>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  products: state.products,
-});
-
-SortButton.propTypes = {
-  products: array.isRequired,
+  const sort = active.status ? 'Desc' : 'Asc';
+  return (
+    <>
+      <div>
+        Sort by price:
+        <a onClick={handleClick} id="sort" href="#" className="products__sort">{sort}</a>
+      </div>
+    </>
+  );
 };
 
+const mapDispatchToProps = {
+  sortDesc,
+  sortAsc,
+};
 
-export default connect(mapStateToProps)(SortButton);
+SortButton.propTypes = {
+  sortAsc: func.isRequired,
+  sortDesc: func.isRequired,
+};
+
+export default compose(
+  connect(null, mapDispatchToProps),
+)(SortButton);

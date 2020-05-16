@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  number, array, object, string, shape,
+  number, array, object, shape,
 } from 'prop-types';
 
 import { compose } from 'redux';
@@ -23,7 +23,7 @@ const Header = ({ basket = {}, products, history }) => {
   const [modalActive, setModalActive] = useState(false);
 
   const handleClick = () => {
-    history.push(`/catalog/${products.id}`);
+    history.push('/');
   };
 
   const openModal = () => {
@@ -38,12 +38,12 @@ const Header = ({ basket = {}, products, history }) => {
   const basketProducts = products.filter((product) => productsID.includes(product.id));
 
   return (
-    <div className="Header__block">
+    <header className="Header__block">
       <div className="container Header__container row">
         <div><a href="#" onClick={handleClick} className="header__logo">The Best Shop</a></div>
         <Search />
         <Basket onClick={openModal} count={count} amount={amount} />
-        <Modal display={modalActive} onClose={closeModal}>
+        <Modal onClick={closeModal} display={modalActive}>
           {basketProducts.length
             ? basketProducts.map((product) => (
               <BasketCart
@@ -56,11 +56,11 @@ const Header = ({ basket = {}, products, history }) => {
               />
             ))
             : (
-              <div>Basket is empty :(</div>
+              <div className="basket_text">Basket is empty :(</div>
             )}
         </Modal>
       </div>
-    </div>
+    </header>
   );
 };
 
