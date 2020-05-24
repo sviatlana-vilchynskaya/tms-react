@@ -9,9 +9,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import '../styles/components/Header.css';
-import '../styles/components/Search.css';
-import '../styles/components/BasketCart.css';
-import '../styles/components/Modal.css';
 
 import Search from './Search';
 import Basket from './Basket';
@@ -43,7 +40,7 @@ const Header = ({ basket = {}, products, history }) => {
         <div><a href="#" onClick={handleClick} className="header__logo">The Best Shop</a></div>
         <Search />
         <Basket onClick={openModal} count={count} amount={amount} />
-        <Modal onClick={closeModal} display={modalActive}>
+        <Modal display={modalActive} onClick={closeModal}>
           {basketProducts.length
             ? basketProducts.map((product) => (
               <BasketCart

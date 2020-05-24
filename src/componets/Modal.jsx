@@ -4,12 +4,13 @@ import { array, func } from 'prop-types';
 import 'styles/components/Modal.css';
 import WithDisplay from '../HOCs/withDisplay';
 
-const Modal = (props) => (
+const Modal = ({ onClick, children }) => (
   <>
-    <div onClick={props.onClick} role="document" className="Modal-background">
+    <div role="document" className="Modal-background">
       <div className="Modal-root">
+        <a href="#" className="close_btn" onClick={onClick}>×</a>
         <p className="modal-root-text modal_header">Basket</p>
-        {props.children}
+        {children}
       </div>
     </div>
   </>
