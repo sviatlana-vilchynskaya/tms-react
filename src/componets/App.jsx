@@ -19,13 +19,16 @@ import Header from './Header';
 import MainBody from './MainBody';
 
 // styles
-import '../styles/components/App.css';
+import RootStyle from '../styles/index';
+import useStyles from '../styles/components/App';
 import sortArray from '../helpers/sortArray';
 
 const cloneDeep = require('lodash.clonedeep');
 
 //
 const App = (props) => {
+  RootStyle();
+  const classes = useStyles();
   useEffect(() => {
     props.startLoader();
     setTimeout(() => {
@@ -50,11 +53,11 @@ const App = (props) => {
   }, []);
   const { load } = props;
   return (
-    <>
+    <div className={classes.root}>
       <Loader display={load} />
       <Header />
       <MainBody />
-    </>
+    </div>
   );
 };
 

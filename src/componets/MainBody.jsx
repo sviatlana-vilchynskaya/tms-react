@@ -12,32 +12,34 @@ import Cart from './Cart';
 import Content from './Content';
 import MainBodyHeader from './MainBodyHeader';
 
-import '../styles/components/MainBody.css';
+import useStyles from '../styles/components/MainBody';
 
 
-const MainBody = ({ products }) => (
-  <>
-    <main className="products container">
-      <MainBodyHeader />
-      <Switch>
-        <Route path="/" exact>
-          {products.map((item) => (
-            <Content
-              key={item.id}
-              product={item}
+const MainBody = ({ products }) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.MainBody}>
+      <main className="products container">
+        <MainBodyHeader />
+        <Switch>
+          <Route path="/" exact>
+            {products.map((item) => (
+              <Content
+                key={item.id}
+                product={item}
+              />
+            ))}
+          </Route>
+          <Route path="/:id">
+            <Cart
+              products={products}
             />
-          ))}
-        </Route>
-        <Route path="/:id">
-          <Cart
-            products={products}
-          />
-        </Route>
-      </Switch>
-    </main>
-  </>
-);
-
+          </Route>
+        </Switch>
+      </main>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   products: state.products,

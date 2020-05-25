@@ -8,10 +8,11 @@ import {
   sortDesc,
 } from '../actions/sortAction';
 // styles
-import '../styles/components/SortButton.css';
+import useStyles from '../styles/components/SortButton';
 
 
 const SortButton = (props) => {
+  const classes = useStyles;
   const [active, setActive] = useState({ status: true, loader: false });
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const SortButton = (props) => {
     <>
       <div>
         Sort by price:
-        <a onClick={handleClick} id="sort" href="#" className="products__sort">{sort}</a>
+        <a onClick={handleClick} id="sort" href="#" className={classes.products__sort}>{sort}</a>
       </div>
     </>
   );

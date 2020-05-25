@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 // HOCs
 import { withRouter } from 'react-router';
 
-import '../styles/components/Header.css';
+import useStyles from '../styles/components/Header';
 
 import Search from './Search';
 import Basket from './Basket';
@@ -17,6 +17,7 @@ import BasketCart from './BasketCart';
 
 
 const Header = ({ basket = {}, products, history }) => {
+  const classes = useStyles();
   const [modalActive, setModalActive] = useState(false);
 
   const handleClick = () => {
@@ -35,27 +36,29 @@ const Header = ({ basket = {}, products, history }) => {
   const basketProducts = products.filter((product) => productsID.includes(product.id));
 
   return (
-    <header className="Header__block">
-      <div className="container Header__container row">
-        <div><a href="#" onClick={handleClick} className="header__logo">The Best Shop</a></div>
-        <Search />
-        <Basket onClick={openModal} count={count} amount={amount} />
-        <Modal display={modalActive} onClick={closeModal}>
-          {basketProducts.length
-            ? basketProducts.map((product) => (
-              <BasketCart
-                key={product.id}
-                product={product}
-                handleBasket={(e) => {
-                  console.log(e);
-                }}
-                variant="catalog"
-              />
-            ))
-            : (
-              <div className="basket_text">Basket is empty :(</div>
-            )}
-        </Modal>
+    <header className={classes.Header__block}>
+      <div className="container row">
+        <div className={classes.Header__container}>
+          <div><a href="#" onClick={handleClick} className={classes.header__logo}>The Best Shop</a></div>
+          <Search />
+          <Basket onClick={openModal} count={count} amount={amount} />
+          <Modal display={modalActive} onClick={closeModal}>
+            {basketProducts.length
+              ? basketProducts.map((product) => (
+                <BasketCart
+                  key={product.id}
+                  product={product}
+                  handleBasket={(e) => {
+                    console.log(e);
+                  }}
+                  variant="catalog"
+                />
+              ))
+              : (
+                <div className={classes.basket_text}>Basket is empty :(</div>
+              )}
+          </Modal>
+        </div>
       </div>
     </header>
   );

@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import '../styles/components/Search.css';
 import { func, array } from 'prop-types';
+
+import useStyles from '../styles/components/Searsh';
+
 import { searchProducts } from '../actions';
 
 // eslint-disable-next-line no-shadow
 const Search = ({ searchProducts, ...props }) => {
+  const classes = useStyles();
   const handleInput = (event) => {
     event.preventDefault();
     searchProducts({ productsOrigin: props.productsOrigin, searchString: event.target.value });
   };
   return (
     <form>
-      <input onInput={handleInput} id="search" className="header__search" type="text" placeholder="Search" />
+      <input onInput={handleInput} id="search" className={classes.input} type="text" placeholder="Search" />
     </form>
   );
-
 };
 const mapDispatchToProps = {
   searchProducts,

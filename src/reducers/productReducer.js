@@ -33,7 +33,6 @@ export default {
       const reg = new RegExp(`${payload.searchString}`, 'i');
 
       return payload.productsOrigin.filter((product) => reg.test(product.title));
-
     },
   }, productsState),
 };

@@ -12,3 +12,5 @@ export const productsState = [];
 export const valueBYNState = 0;
 
 export const productsOriginState = [];
+
+export const currencyState = {};
