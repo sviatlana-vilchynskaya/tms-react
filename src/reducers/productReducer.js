@@ -6,33 +6,48 @@ import {
   sortDesc,
   sortAsc,
   searchProducts,
+  currencyProducts,
+  changePrice,
 } from '../actions';
 // state
 import { productsState } from '../constants/defaultState';
 
+
 export default {
   products: handleActions({
-    [addProducts]: (state, { payload = [] }) => payload,
+    [addProducts]: (state, { payload = [] }) => ({ current: payload, origin: payload }),
     [sortDesc]: (state) => {
-      const newState = cloneDeep(state);
+      const newState = [...state.current];
       newState.sort((a, b) => {
         if (a.price.value > b.price.value) return -1;
         return 1;
       });
-      return newState;
+      return { ...state, current: newState };
     },
     [sortAsc]: (state) => {
-      const newState = cloneDeep(state);
+      const newState = [...state.current];
       newState.sort((a, b) => {
         if (a.price.value > b.price.value) return 1;
         return -1;
       });
-      return newState;
+      return { ...state, current: newState };
     },
-    [searchProducts]: (state, { payload = { productsOrigin: [], searchString: '' } }) => {
-      const reg = new RegExp(`${payload.searchString}`, 'i');
+    [searchProducts]: (state, { payload = '' }) => {
+      const reg = new RegExp(payload.searchString, 'i');
 
-      return payload.productsOrigin.filter((product) => reg.test(product.title));
+      return { ...state, current: state.origin.filter((product) => reg.test(product.title)) };
     },
+    [changePrice]: (state, { payload = {} }) => payload,
+    [currencyProducts]: (state, { payload = 0 }) => {
+      const newState = cloneDeep(state.origin);
+      if (payload) {
+        newState.forEach((item) => {
+          item.price.value *= payload;
+          item.price.currency = 'BYN';
+        });
+        return { ...state, current: newState };
+      } return { ...state, current: state.origin };
+    },
+
   }, productsState),
 };

@@ -7,10 +7,13 @@ export const basketState = {
 
 export const loadState = true;
 
-export const productsState = [];
-
-export const valueBYNState = 0;
-
-export const productsOriginState = [];
+export const productsState = {
+  origin: [],
+  current: [],
+};
 
 export const currencyState = {};
+
+export const appState = {
+  lightTheme: true,
+};

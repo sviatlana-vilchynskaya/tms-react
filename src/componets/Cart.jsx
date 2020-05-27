@@ -14,7 +14,7 @@ const Cart = ({ products }) => {
   const classes = useStyles();
   const params = useParams();
 
-  const product = products.find((item) => item.id === params.id);
+  const product = products.find((item) => item.id === params.id) || { price: {} };
   return (
     <div id="Content" className={classes.content}>
       <div className={classes.wrap}>

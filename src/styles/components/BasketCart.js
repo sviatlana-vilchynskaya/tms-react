@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss';
 
-const BasketCartStyle = () => ({
+const BasketCartStyle = ({ palette }) => ({
   content: {
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.common.white,
     borderRadius: '7px',
     padding: '15px',
     margin: '20px 0 20px 0',
@@ -25,7 +25,7 @@ const BasketCartStyle = () => ({
   product__text: {
     display: 'flex',
     flexDirection: 'column',
-    color: '#252525',
+    color: palette.common.black,
   },
 
   textWidth: {
@@ -35,14 +35,14 @@ const BasketCartStyle = () => ({
   product__description: {
     paddingTop: '20px',
     fontSize: '12px',
-    color: '#000000',
+    color: palette.common.black,
   },
   product__price: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    color: '#000000',
+    color: palette.common.black,
   },
 
 });

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { func } from 'prop-types';
 // action
-import { connect } from 'react-redux';
 import { changeCurrency } from '../actions/currencyAction';
-// HOCs
 // style
 import useStyles from '../styles/components/CourseChangeButton';
 

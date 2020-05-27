@@ -1,9 +1,13 @@
 import { createUseStyles } from 'react-jss';
 
-const AppStyle = () => ({
+const AppStyle = ({ palette }) => ({
+  root: {
+    backgroundColor: palette.background.default,
+    height: '110vh',
+  },
   a: {
     textDecoration: 'none',
-    color: '#252525',
+    color: palette.text.primary,
   },
   container: {
     maxWidth: '900px',

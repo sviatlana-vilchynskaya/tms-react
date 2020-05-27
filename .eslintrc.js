@@ -39,5 +39,6 @@ module.exports = {
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
     "jsx-a11y/no-static-element-interactions": ["off"],
+    "no-param-reassign": [0],
   },
 };

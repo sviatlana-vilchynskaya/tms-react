@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { object } from 'prop-types';
 import { useHistory } from 'react-router-dom';
-
+// components
 import Button from './Button';
-
+// helpers
 import viewNumber from '../helpers/viewNumber';
+// style
 import useStyles from '../styles/components/Content';
 
 
