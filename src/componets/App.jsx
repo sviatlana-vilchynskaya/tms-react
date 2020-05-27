@@ -23,7 +23,6 @@ const App = (props) => {
     props.getData();
   }, []);
   const { load } = props;
-  console.log(load);
   return (
     <div className={classes.root}>
       <Loader display={load} />

@@ -44,7 +44,7 @@ export function* changeCurrencySaga(value) {
   const { products, basket, currency } = yield select((state) => state);
 
 
-  if (value.payload in currency) {
+  if (value.payload[currency]) {
     const productCurrency = cloneDeep(products.origin);
     productCurrency.forEach((product) => {
       product.price.value *= currency[value.payload];

@@ -42,7 +42,6 @@ const Header = ({ basket, products }) => {
 
   const { count, amount, productsID } = basket;
   const basketProduct = products.filter((item) => productsID.includes(item.id));
-  console.log(basketProduct);
   return (
     <header className={classes.Header__block}>
       <div className="container row">
