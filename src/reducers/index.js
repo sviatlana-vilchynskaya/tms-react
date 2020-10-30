@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
+
 import basketReducer from './basketReducer';
 import loadReducer from './loadReducer';
 import productsReducer from './productReducer';
+import valueBYNReducer from './valueBYNReducer';
+import productOriginReducer from './productOriginReducer';
 
 const reducers = combineReducers({
-  basket: basketReducer,
-  load: loadReducer,
-  products: productsReducer,
+  ...basketReducer,
+  ...loadReducer,
+  ...productsReducer,
+  ...productOriginReducer,
+  ...valueBYNReducer,
 });
 
 export default reducers;

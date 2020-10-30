@@ -1,22 +1,51 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { array } from 'prop-types';
+
+import { connect } from 'react-redux';
+
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+import Cart from './Cart';
+import Content from './Content';
 import MainBodyHeader from './MainBodyHeader';
-import Products from './Products';
 
 import '../styles/components/MainBody.css';
 
-export default class MainBody extends Component {
-  render() {
-    return (
-      <div className="container MainBody">
-        <MainBodyHeader />
-        <Products products={this.products} {...this.props} />
-      </div>
-    );
-  }
-}
+
+const MainBody = ({ products }) => (
+  <>
+    <main className="products container">
+      <MainBodyHeader />
+      <Switch>
+        <Route path="/" exact>
+          {products.map((item) => (
+            <Content
+              key={item.id}
+              product={item}
+            />
+          ))}
+        </Route>
+        <Route path="/:id">
+          <Cart
+            products={products}
+          />
+        </Route>
+      </Switch>
+    </main>
+  </>
+);
+
+
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
 
 MainBody.propTypes = {
-  addToBasket: PropTypes.func.isRequired,
-  removeFromBasket: PropTypes.func.isRequired,
+  products: array.isRequired,
 };
+
+
+export default connect(mapStateToProps)(MainBody);

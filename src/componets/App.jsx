@@ -1,111 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { bool, func } from 'prop-types';
+import { compose } from 'redux';
+
 // HOCs
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 
 import {
-  // addToBasket,
-  // removeFromBasket,
-  endLoader,
   startLoader,
-  // addProducts,
-} from 'actions';
-import '../styles/components/App.css';
+  endLoader,
+  addProducts,
+  addProductsOrigin,
+  addValueBYN,
+} from '../actions/index';
+
 import Loader from './Loader';
 import Header from './Header';
 import MainBody from './MainBody';
+
+// styles
+import '../styles/components/App.css';
 import sortArray from '../helpers/sortArray';
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      basket: {
-        productIds: [],
-        count: 0,
-        amount: 0,
-      },
-      products: [],
-    };
-    this.addToBasket = this.addToBasket.bind(this);
-    this.removeFromBasket = this.removeFromBasket.bind(this);
-  }
+const cloneDeep = require('lodash.clonedeep');
 
-  componentDidMount() {
-    this.props.startLoader();
-
+//
+const App = (props) => {
+  useEffect(() => {
+    props.startLoader();
     setTimeout(() => {
       Promise.all([
-        fetch('/api/products').then((response) => response.json()),
-        fetch('https://www.nbrb.by/api/exrates/rates/840?parammode=1').then((response) => response.json()),
+        fetch('/api/products')
+          .then((response) => response.json()),
+        fetch('https://www.nbrb.by/api/exrates/rates/840?parammode=1')
+          .then((response) => response.json()),
+
       ])
         .then(([products, nbrb]) => {
-          this.setState({
-            products: products.map((item = {}) => {
-              const product = { ...item };
-              product.price.value *= nbrb.Cur_OfficialRate;
-              product.price.currency = 'BYN';
-
-              return product;
-            }),
-          }, () => {
-            this.props.endLoader();
-          });
+          props.addProducts(sortArray(products, 'desc'));
+          props.addProductsOrigin(cloneDeep(products));
+          props.addValueBYN(nbrb.Cur_OfficialRate);
+          props.endLoader();
         })
         .catch((err) => {
           console.log(err);
-          this.props.endLoader();
+          props.endLoader();
         });
     }, 1000);
-  }
-
-  addToBasket(product) {
-    this.setState((prevState) => ({
-      basket: {
-        productIds: [...prevState.basket.productIds, product.id],
-        count: prevState.basket.count + 1,
-        amount: prevState.basket.amount + product.price.value,
-      },
-    }));
-  }
-
-  removeFromBasket(product) {
-    this.setState((prevState) => ({
-      basket: {
-        productIds: [...prevState.basket.productIds, product.id],
-        count: prevState.basket.count - 1,
-        amount: prevState.basket.amount - product.price.value,
-      },
-    }));
-  }
-
-  render() {
-    const { products } = this.state;
-    const { load } = this.props;
-
-    console.log(this.props);
-
-    sortArray(products, 'desc');
-    return (
-      <div className="App">
-        <Loader active={load} />
-        <Header products={products} title="My App!" basket={this.state.basket} />
-        <MainBody
-          products={products}
-          addToBasket={this.addToBasket}
-          removeFromBasket={this.removeFromBasket}
-        />
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  endLoader: func.isRequired,
-  load: bool.isRequired,
-  startLoader: func.isRequired,
+  }, []);
+  const { load } = props;
+  return (
+    <>
+      <Loader display={load} />
+      <Header />
+      <MainBody />
+    </>
+  );
 };
+
 const mapStateToProps = (state) => ({
   load: state.load,
 });
@@ -113,6 +65,50 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   startLoader,
   endLoader,
+  addProducts,
+  addProductsOrigin,
+  addValueBYN,
 };
 
-export default hot(connect(mapStateToProps, mapDispatchToProps)(App));
+App.displayName = 'App';
+
+App.propTypes = {
+  load: bool.isRequired,
+  addProducts: func.isRequired,
+  addProductsOrigin: func.isRequired,
+  startLoader: func.isRequired,
+  endLoader: func.isRequired,
+  addValueBYN: func.isRequired,
+};
+
+export default compose(
+  hot,
+  connect(mapStateToProps, mapDispatchToProps),
+)(App);
+
+//   useEffect(() => {
+//     props.startLoader();
+//
+//     setTimeout(() => {
+//       Promise.all([
+//         fetch('/api/products')
+//           .then((response) => response.json()),
+//         fetch('https://www.nbrb.by/api/exrates/rates/840?parammode=1')
+//           .then((response) => response.json()),
+//       ])
+//         .then(([products, nbrb]) => {
+//           props.addProducts(products.map((item) => {
+//             const product = { ...item };
+//             product.price.value *= nbrb.Cur_OfficialRate;
+//             product.price.currency = 'BYN';
+//
+//             return product;
+//           }));
+//           props.endLoader();
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//           props.endLoader();
+//         });
+//     }, 1000);
+//   }, []);

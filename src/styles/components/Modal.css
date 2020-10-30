@@ -1,0 +1,33 @@
+.Modal-background {
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.Modal-root {
+    background-color: #c1c1c2;
+    position: absolute;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+.modal_header {
+    background-color: #252525;
+    border-radius: 4px 4px 0 0;
+    padding: 10px;
+}
+
+.modal-root-text {
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}

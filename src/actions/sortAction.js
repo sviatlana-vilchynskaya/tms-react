@@ -1,9 +1,9 @@
 import { createActions } from 'redux-actions';
 
 export const {
-  addToBasket,
-  removeFromBasket,
+  sortAsc,
+  sortDesc,
 } = createActions(
-  'ADD_TO_BASKET',
-  'REMOVE_FROM_BASKET',
+  'SORT_ASC',
+  'SORT_DESC',
 );

@@ -1,16 +1,18 @@
-.add_to_basket {
+.CourseChangeButton_bg {
+    left: 63%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    width: 270px;
-    height: 35px;
+    width: 60px;
+    height: 30px;
     background-color: #ff8b38;
-    border-radius: 4px;
+    border-style: none;
+    border-radius: 3px;
     padding: 0;
     cursor: pointer;
 }
 
-.add_to_basket._active {
+.CourseChangeButton_bg._active {
     background-color: grey;
 }
