@@ -85,30 +85,3 @@ export default compose(
   hot,
   connect(mapStateToProps, mapDispatchToProps),
 )(App);
-
-//   useEffect(() => {
-//     props.startLoader();
-//
-//     setTimeout(() => {
-//       Promise.all([
-//         fetch('/api/products')
-//           .then((response) => response.json()),
-//         fetch('https://www.nbrb.by/api/exrates/rates/840?parammode=1')
-//           .then((response) => response.json()),
-//       ])
-//         .then(([products, nbrb]) => {
-//           props.addProducts(products.map((item) => {
-//             const product = { ...item };
-//             product.price.value *= nbrb.Cur_OfficialRate;
-//             product.price.currency = 'BYN';
-//
-//             return product;
-//           }));
-//           props.endLoader();
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//           props.endLoader();
-//         });
-//     }, 1000);
-//   }, []);

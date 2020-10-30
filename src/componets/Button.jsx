@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import classNames from 'classnames';
 // HOCs
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ import '../styles/components/Button.css';
 const Button = ({
   product,
   basket,
+  ...props
 }) => {
   const [active, stateActive] = useState({ status: true, loader: false });
   useEffect(() => {
@@ -26,9 +27,9 @@ const Button = ({
   useEffect(() => {
     if (active.loader) {
       if (active.status) {
-        addToBasket({ productsID: product.id, priceValue: product.price.value });
+        props.addToBasket({ productsID: product.id, priceValue: product.price.value });
       } else {
-        removeFromBasket({ productsID: product.id, priceValue: product.price.value });
+        props.removeFromBasket({ productsID: product.id, priceValue: product.price.value });
       }
     }
   }, [active]);
@@ -38,9 +39,11 @@ const Button = ({
     stateActive((prevState) => ({ status: !prevState.status, loader: true }));
   };
 
-  const text = active.status ? 'Remove from Basket' : 'Add to Basket';
+  const activeStatus = basket.productsID.includes(product.id);
+
+  const text = activeStatus ? 'Remove from Basket' : 'Add to Basket';
   return (
-    <a onClick={handleClick} className={classNames('add_to_basket', { _active: active.status })} href="#">{text}</a>
+    <a onClick={handleClick} className={classNames('add_to_basket', { _active: activeStatus })} href="#">{text}</a>
   );
 };
 
@@ -58,6 +61,8 @@ const mapDispatchToProps = {
 Button.propTypes = {
   basket: object.isRequired,
   product: object.isRequired,
+  addToBasket: func.isRequired,
+  removeFromBasket: func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Button);

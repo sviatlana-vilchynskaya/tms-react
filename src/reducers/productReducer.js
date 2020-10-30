@@ -1,7 +1,12 @@
 import { handleActions } from 'redux-actions';
 import cloneDeep from 'lodash.clonedeep';
 // action
-import { addProducts, sortDesc, sortAsc } from '../actions';
+import {
+  addProducts,
+  sortDesc,
+  sortAsc,
+  searchProducts,
+} from '../actions';
 // state
 import { productsState } from '../constants/defaultState';
 
@@ -23,6 +28,12 @@ export default {
         return -1;
       });
       return newState;
+    },
+    [searchProducts]: (state, { payload = { productsOrigin: [], searchString: '' } }) => {
+      const reg = new RegExp(`${payload.searchString}`, 'i');
+
+      return payload.productsOrigin.filter((product) => reg.test(product.title));
+
     },
   }, productsState),
 };
