@@ -33,7 +33,7 @@ const Button = ({
         props.removeFromBasket({ productsID: product.id, priceValue: product.price.value });
       }
     }
-  }, [active]);
+  }, [active.status]);
 
   const handleClick = (event) => {
     event.preventDefault();

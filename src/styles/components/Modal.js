@@ -1,8 +1,8 @@
 import { createUseStyles } from 'react-jss';
 
-const ModalStyle = () => ({
+const ModalStyle = ({ palette }) => ({
   modal_background: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: palette.text.secondary,
     position: 'fixed',
     right: 0,
     left: 0,
@@ -11,7 +11,7 @@ const ModalStyle = () => ({
   },
   modal_root: {
     width: '770px',
-    backgroundColor: ' #d8d8d8',
+    backgroundColor: '#d8d8d8',
     position: 'absolute',
     padding: '20px',
     top: '50%',
@@ -21,10 +21,10 @@ const ModalStyle = () => ({
     borderRadius: '5px',
   },
   modal_rootText: {
-    color: '#ffffff',
+    color: palette.common.white,
     fontSize: '30px',
     textAlign: 'center',
-    backgroundColor: '#252525',
+    backgroundColor: palette.background.header,
     borderRadius: '4px 4px 0 0',
     padding: '10px',
   },

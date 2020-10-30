@@ -1,14 +1,17 @@
 import { createUseStyles } from 'react-jss';
 
-const CartStyle = () => ({
+const CartStyle = ({ palette, typography }) => ({
   content: {
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.background.cart,
     borderRadius: '7px',
     padding: '15px',
     margin: '20px 0 20px 0',
   },
   title: {
-    color: '#252525',
+    color: palette.text.primary,
+    height: '97px',
+    width: '377px',
+    paddingTop: '10px',
   },
   img: {
     height: '120px',
@@ -16,16 +19,12 @@ const CartStyle = () => ({
     objectFit: 'contain',
   },
   product__text: {
-    paddingTop: '10px',
-    width: '377px',
-    marginLeft: '23px',
     display: 'flex',
     flexDirection: 'column',
-    height: '97px',
   },
   product__description: {
     paddingTop: '20px',
-    fontSize: '12px',
+    fontSize: typography.fontSizeNormal,
   },
   product__price: {
     display: 'flex',
@@ -42,6 +41,8 @@ const CartStyle = () => ({
   wrap: {
     display: 'flex',
     justifyContent: 'space-between',
+    backgroundColor: palette.common.white,
+    borderRadius: '4px',
   },
 });
 export default createUseStyles(CartStyle);

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/kohechka/tms-react#readme",
   "dependencies": {
+    "@material-ui/core": "^4.10.0",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash": "^4.17.19",
@@ -36,6 +37,8 @@
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "redux-saga": "^1.1.3",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
@@ -43,6 +46,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@hot-loader/react-dom": "^16.13.0",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "actions": "^1.3.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -60,6 +64,8 @@
     "husky": "^4.2.3",
     "node-sass": "^4.13.1",
     "react-hot-loader": "^4.12.20",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6",
     "sass-loader": "^8.0.2",
     "store": "^2.0.12",
     "style-loader": "^1.1.3",

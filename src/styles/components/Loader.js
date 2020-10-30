@@ -1,12 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
-const LoaderStyle = () => ({
+const LoaderStyle = ({ palette }) => ({
   Loader: {
-    display: 'none',
     position: 'fixed',
     width: '100%',
     height: '100vh',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: palette.text.secondary,
     zIndex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -17,9 +16,13 @@ const LoaderStyle = () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#c8c8c8',
-    color: '#252525',
+    backgroundColor: palette.background.cart,
+    color: palette.common.black,
     borderRadius: '4px',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   '.Loader.active': {
     display: 'flex',

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-const MainBodyStyle = () => ({
+const MainBodyStyle = ({ palette }) => ({
   MainBody: {
     paddingTop: '20px',
   },
@@ -14,7 +14,7 @@ const MainBodyStyle = () => ({
     columnGap: '20px',
     marginBottom: '30px',
     padding: '20px',
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.background.cart,
     borderRadius: '4px',
   },
 });

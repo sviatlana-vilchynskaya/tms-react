@@ -1,15 +1,15 @@
 import { createUseStyles } from 'react-jss';
 
-const CourseChangeButtonStyle = () => ({
+const CourseChangeButtonStyle = ({ palette }) => ({
   course_btn: {
     left: '63%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#ffffff',
-    width: '60px',
-    height: '30px',
-    backgroundColor: '#ff8b38',
+    color: palette.common.white,
+    width: '45px',
+    height: '25px',
+    backgroundColor: palette.primary.main,
     borderStyle: 'none',
     borderRadius: '3px',
     padding: '0',

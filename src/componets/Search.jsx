@@ -28,7 +28,7 @@ const mapStateToProps = (state) => ({
 });
 
 Search.propTypes = {
-  productsOrigin: array.isRequired,
+  productsOrigin: array,
   searchProducts: func.isRequired,
 };
 

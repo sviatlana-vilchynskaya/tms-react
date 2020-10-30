@@ -1,26 +1,28 @@
 import { createUseStyles } from 'react-jss';
 
-const BasketStyle = () => ({
+const BasketStyle = ({ palette, typography }) => ({
   basket__count: {
-    fontSize: '9px',
-    fontWeight: '400',
+    fontSize: typography.fontSizeSmall,
+    fontWeight: typography.fontWeightRegular,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: '15px',
     height: '15px',
-    color: '#ffffff',
-    background: '#ff8b38',
+    color: palette.common.white,
+    background: palette.primary.main,
     transform: 'translateY(-7px)',
     borderRadius: '50%',
   },
   basket__amount: {
-    fontSize: '9px',
+    fontSize: typography.fontSizeSmall,
     textTransform: 'lowercase',
     color: '#c1c1c2',
+    cursor: 'pointer',
   },
   basket__amount_sum: {
-    fontSize: '9px',
+    fontSize: typography.fontSizeSmall,
+    cursor: 'pointer',
   },
 });
 export default createUseStyles(BasketStyle);

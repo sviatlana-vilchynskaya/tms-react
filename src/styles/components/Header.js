@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss';
 
-const HeaderStyle = () => ({
+const HeaderStyle = ({ palette }) => ({
   Header__block: {
     width: '100%',
-    background: '#252525',
+    background: palette.background.header,
     marginBottom: '15px',
   },
 
@@ -12,15 +12,15 @@ const HeaderStyle = () => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '60px',
-    color: '#f5f5f7',
+    color: palette.common.white,
   },
 
   header__logo: {
-    color: ' #ffffff',
+    color: palette.common.white,
   },
 
   basket_text: {
-    color: '#252525',
+    color: palette.common.black,
     padding: '20px',
     textAlign: 'center',
   },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { array } from 'prop-types';
 
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import {
@@ -15,7 +16,7 @@ import MainBodyHeader from './MainBodyHeader';
 import useStyles from '../styles/components/MainBody';
 
 
-const MainBody = ({ products }) => {
+const MainBody = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.MainBody}>
@@ -23,16 +24,16 @@ const MainBody = ({ products }) => {
         <MainBodyHeader />
         <Switch>
           <Route path="/" exact>
-            {products.map((item) => (
+            {props.products.map((product) => (
               <Content
-                key={item.id}
-                product={item}
+                key={product.id}
+                product={product}
               />
             ))}
           </Route>
           <Route path="/:id">
             <Cart
-              products={products}
+              products={props.products}
             />
           </Route>
         </Switch>
@@ -42,7 +43,7 @@ const MainBody = ({ products }) => {
 };
 
 const mapStateToProps = (state) => ({
-  products: state.products,
+  products: state.products.current,
 });
 
 MainBody.propTypes = {
@@ -50,4 +51,6 @@ MainBody.propTypes = {
 };
 
 
-export default connect(mapStateToProps)(MainBody);
+export default compose(
+  connect(mapStateToProps),
+)(MainBody);

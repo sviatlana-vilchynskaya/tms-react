@@ -1,14 +1,14 @@
 import { createUseStyles } from 'react-jss';
 
-const ContentStyle = () => ({
+const ContentStyle = ({ palette, typography }) => ({
   content: {
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.background.cart,
     borderRadius: '7px',
     padding: '15px',
     marginBottom: '20px',
   },
   title: {
-    color: '#252525',
+    color: palette.text.primary,
     height: '97px',
     width: '377px',
     paddingTop: '10px',
@@ -24,7 +24,7 @@ const ContentStyle = () => ({
   },
   product__description: {
     paddingTop: '20px',
-    fontSize: '12px',
+    fontSize: typography.fontSizeNormal,
   },
   product__price: {
     display: 'flex',
@@ -41,6 +41,8 @@ const ContentStyle = () => ({
   wrap: {
     display: 'flex',
     justifyContent: 'space-between',
+    backgroundColor: palette.common.white,
+    borderRadius: '4px',
   },
 });
 export default createUseStyles(ContentStyle);
