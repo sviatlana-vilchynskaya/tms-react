@@ -6,26 +6,27 @@ import { useHistory } from 'react-router-dom';
 import Button from './Button';
 
 import viewNumber from '../helpers/viewNumber';
-import '../styles/components/Content.css';
+import useStyles from '../styles/components/Content';
 
 
 const Content = ({ product }) => {
+  const classes = useStyles();
   const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
     history.push(`/${product.id}`);
   };
   return (
-    <div id="Content" className="Products__block">
-      <div className="product__wrap">
-        <div className="product__img_wrap">
-          <img className="product__img" src={product.imageLink} alt="" />
+    <div id="Content" className={classes.content}>
+      <div className={classes.wrap}>
+        <div className={classes.img}>
+          <img src={product.imageLink} alt="" />
         </div>
-        <div className="product__text">
-          <a onClick={handleClick} className="product__text_title" href="#">{product.title}</a>
-          <p className="product__text_description" dangerouslySetInnerHTML={{ __html: product.description }} />
+        <div className={classes.title}>
+          <a onClick={handleClick} className={classes.product__text} href="#">{product.title}</a>
+          <p className={classes.product__description} dangerouslySetInnerHTML={{ __html: product.description }} />
         </div>
-        <div className="product__cost">
+        <div className={classes.product__price}>
           <p>{viewNumber(product.price.value)}</p>
           <Button product={product} />
         </div>
@@ -33,31 +34,6 @@ const Content = ({ product }) => {
     </div>
   );
 };
-/* return (
-    <div id = 'Content' className="Products__block">
-      <div className="row product__wrap">
-        <div className="product__cell">
-          <div className="product__img_wrap">
-            <img className="product__img" src={product.imageLink} alt=""/>
-          </div>
-          <div className="product__text">
-            <p className="product__text_title">MacBook Pro</p>
-            <p className="product__text_description">
-              2.3GHz 8-Core Processor
-              <br/>
-              1TB Storage
-              <br/>
-              AMD Radeon Pro 5500M
-            </p>
-          </div>
-        </div>
-        <div className="product__cost">
-          <p className="product__cost_info">$2,799.00</p>
-          <a className="basket__button" href="/">Add to Basket</a>
-        </div>
-      </div>
-    </div>
-  ); */
 
 Content.displayName = 'Content';
 

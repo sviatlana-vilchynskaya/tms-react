@@ -1,15 +1,19 @@
 import React from 'react';
 
-import '../styles/components/Loader.css';
+import useStyles from '../styles/components/Loader';
 
 import withDisplay from '../HOCs/withDisplay';
 
 
-const Loader = () => (
-  <div className="Loader">
-    <div className="Loader__child">Loading...</div>
-  </div>
-);
+const Loader = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.Loader}>
+      <div className={classes.Loader__child}>Loading...</div>
+    </div>
+  );
+};
+
 
 Loader.displayName = 'Loader';
 

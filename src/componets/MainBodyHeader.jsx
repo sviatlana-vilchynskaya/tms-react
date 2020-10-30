@@ -1,21 +1,24 @@
 import React from 'react';
-import '../styles/components/MainBodyHeader.css';
+import useStyles from '../styles/components/MainBodyHeader';
 import SortButton from './SortButton';
 
 import CourseChangeButton from './CourseChangeButton';
 
-const MainBodyHeader = () => (
-  <div className="Products__sort_wrap">
-    <div>
-      <p className="Products__sort_value">Electronics</p>
+const MainBodyHeader = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.Products__sort_wrap}>
+      <div>
+        <p className={classes.Products__sort_value}>Electronics</p>
+      </div>
+      <div>
+        <CourseChangeButton />
+      </div>
+      <div>
+        <SortButton />
+      </div>
     </div>
-    <div>
-      <CourseChangeButton />
-    </div>
-    <div>
-      <SortButton />
-    </div>
-  </div>
+  );
+};
 
-);
 export default MainBodyHeader;

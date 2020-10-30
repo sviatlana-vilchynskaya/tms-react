@@ -1,20 +1,23 @@
 import React from 'react';
 import { array, func } from 'prop-types';
 
-import 'styles/components/Modal.css';
+import useStyles from '../styles/components/Modal';
 import WithDisplay from '../HOCs/withDisplay';
 
-const Modal = ({ onClick, children }) => (
-  <>
-    <div role="document" className="Modal-background">
-      <div className="Modal-root">
-        <a href="#" className="close_btn" onClick={onClick}>×</a>
-        <p className="modal-root-text modal_header">Basket</p>
-        {children}
+const Modal = ({ onClick, children }) => {
+  const classes = useStyles();
+  return (
+    <>
+      <div role="document" className={classes.modal_background}>
+        <div className={classes.modal_root}>
+          <a href="#" className={classes.close_btn} onClick={onClick}>×</a>
+          <p className={classes.modal_rootText}>Basket</p>
+          {children}
+        </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 
 Modal.propTypes = {

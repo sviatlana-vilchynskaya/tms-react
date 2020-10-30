@@ -9,7 +9,7 @@ import {
   removeFromBasket,
 } from '../actions/basketAction';
 // style
-import '../styles/components/Button.css';
+import useStyles from '../styles/components/Button';
 
 const Button = ({
   product,
@@ -17,6 +17,7 @@ const Button = ({
   ...props
 }) => {
   const [active, stateActive] = useState({ status: true, loader: false });
+  const classes = useStyles();
   useEffect(() => {
     if (basket.productsID.find((item) => item === product.id)) {
       stateActive({ status: true, loader: false });
@@ -43,7 +44,7 @@ const Button = ({
 
   const text = activeStatus ? 'Remove from Basket' : 'Add to Basket';
   return (
-    <a onClick={handleClick} className={classNames('add_to_basket', { _active: activeStatus })} href="#">{text}</a>
+    <a onClick={handleClick} className={classNames(classes.button, { [classes.active]: activeStatus })} href="#">{text}</a>
   );
 };
 
